@@ -8,6 +8,7 @@ import common.interfaces.IContactGroup;
 
 @Remote
 public interface IDAOContactGroup {
+	IContactGroup getNewContactGroup();
 	void create(String groupName);
 	void update(IContactGroup group);
 	void delete(long id);

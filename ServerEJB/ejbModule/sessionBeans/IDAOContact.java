@@ -15,8 +15,8 @@ import domain.PhoneNumber;
  */
 @Remote
 public interface IDAOContact {
+	IContact getNewContact();
 	void create(String firstName, String lastName, String email, IAddress address, Set<PhoneNumber> phones, Set<ContactGroup> groups);
-	void create(String firstName, String lastName, String email, IAddress address, Set<PhoneNumber> phones, Set<ContactGroup> groups, String numSiret);
 	void update(IContact contact);
 	void delete(long id);
 	IContact find(long id);
