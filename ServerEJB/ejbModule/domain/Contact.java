@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.DiscriminatorValue;
@@ -7,6 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import common.interfaces.IAddress;
+import common.interfaces.IContact;
+import common.interfaces.IContactGroup;
+import common.interfaces.IPhoneNumber;
 
 
 /**
@@ -20,9 +26,9 @@ import javax.persistence.Id;
  */
 @Entity
 @DiscriminatorValue("C")
-public class Contact {
+public class Contact implements IContact{
 	/**
-	 * Le pr√©nom du contact
+	 * Le prÈnom du contact
 	 */
 	private String firstName;
 	
@@ -32,7 +38,7 @@ public class Contact {
 	private String lastName;
 	
 	/**
-	 * L'√©mail du contact
+	 * L'Èmail du contact
 	 */
 	private String email;
 	
@@ -48,7 +54,7 @@ public class Contact {
 	private Address address;
 	
 	/**
-	 * Les num√©ros de t√©l√©phone associ√© au contact
+	 * Les numÈros de t√©l√©phone associÈ au contact
 	 */
 	private Set<PhoneNumber> phones;
 	
@@ -59,35 +65,51 @@ public class Contact {
 	
 	
 	/**
-	 * Renvoie les num√©ros de t√©l√©phone du contact
-	 * @return les num√©ros de t√©l√©phone
+	 * Renvoie les numÈros de tÈlÈphone du contact
+	 * @return les numÈros de tÈlÈphone
 	 */
-	public Set<PhoneNumber> getPhones() {
-		return phones;
+	public Set<IPhoneNumber> getPhones() {
+		Set<IPhoneNumber> list = new HashSet<IPhoneNumber>();
+		for (PhoneNumber phoneNumber : phones) {
+			list.add((IPhoneNumber)phoneNumber);
+		}
+		return list;
 	}
 
 	/**
-	 * D√©finie la liste des num√©ros de t√©l√©phone du contact
-	 * @param phones la nouvelle liste de num√©ros de t√©l√©phone
+	 * DÈfinie la liste des numÈros de tÈlÈphone du contact
+	 * @param phones la nouvelle liste de numÈros de tÈlÈphone
 	 */
-	public void setPhones(Set<PhoneNumber> phones) {
-		this.phones = phones;
+	public void setPhones(Set<IPhoneNumber> phones) {
+		if (this.phones == null)
+			this.phones = new HashSet<PhoneNumber>();
+		for (IPhoneNumber phoneNumber : phones) {
+			this.phones.add((PhoneNumber)phoneNumber);
+		}
 	}
 
 	/**
 	 * Renvoie la liste des groupes du contact
 	 * @return la liste des groupes du contact
 	 */
-	public Set<ContactGroup> getGroups() {
-		return groups;
+	public Set<IContactGroup> getGroups() {
+		Set<IContactGroup> list = new HashSet<IContactGroup>();
+		for (ContactGroup contactGroup : groups) {
+			list.add((IContactGroup)contactGroup);
+		}
+		return list;
 	}
 
 	/**
-	 * D√©finie la liste des groupes du contact
+	 * DÈfinie la liste des groupes du contact
 	 * @param groups la nouvelle liste de groupes
 	 */
-	public void setGroups(Set<ContactGroup> groups) {
-		this.groups = groups;
+	public void setGroups(Set<IContactGroup> groups) {
+		if (this.groups == null)
+			this.groups = new HashSet<ContactGroup>();
+		for (IContactGroup contactGroup : groups) {
+			this.groups.add((ContactGroup)contactGroup);
+		}
 	}
 
 	/**
@@ -99,7 +121,7 @@ public class Contact {
 	}
 
 	/**
-	 * D√©finie l'adresse du contact
+	 * DÈfinie l'adresse du contact
 	 * @param address la nouvelle adresse du contact
 	 */
 	public void setAddress(Address address) {
@@ -113,16 +135,16 @@ public class Contact {
 	}
 	
 	/**
-	 * Renvoie le pr√©nom du contact
-	 * @return le pr√©nom du contact
+	 * Renvoie le prÈnom du contact
+	 * @return le prÈnom du contact
 	 */
 	public String getFirstName() {
 		return firstName;
 	}
 	
 	/**
-	 * D√©finie le pr√©nom du contact
-	 * @param firstName le nouveau pr√©nom du contact
+	 * DÈfinie le prÈnom du contact
+	 * @param firstName le nouveau prÈnom du contact
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -137,7 +159,7 @@ public class Contact {
 	}
 	
 	/**
-	 * D√©finie le nom du contact
+	 * DÈfinie le nom du contact
 	 * @param lastName le nouveau nom du contact
 	 */
 	public void setLastName(String lastName) {
@@ -145,7 +167,7 @@ public class Contact {
 	}
 	
 	/**
-	 * Renvoie l'√©mail du contact
+	 * Renvoie l'Èmail du contact
 	 * @return l'email du contact
 	 */
 	public String getEmail() {
@@ -153,7 +175,7 @@ public class Contact {
 	}
 	
 	/**
-	 * D√©finie l'email du contact
+	 * DÈfinie l'email du contact
 	 * @param email le nouvel email du contact
 	 */
 	public void setEmail(String email) {
@@ -162,17 +184,23 @@ public class Contact {
 	
 	/**
 	 * Renvoie l'identifiant du contact
-	 * @return l'identifiant associ√© au contact
+	 * @return l'identifiant associÈ au contact
 	 */
 	public Long getId() {
 		return id;
 	}
 	
 	/**
-	 * D√©finie l'identifiant du contact
+	 * DÈfinie l'identifiant du contact
 	 * @param id le nouvel identifiant du contact
 	 */
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	@Override
+	public void setAddress(IAddress address) {
+		// TODO Auto-generated method stub
+		this.address = (Address)address;
 	}
 }
