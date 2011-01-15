@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" media="screen" type="text/css" title="Design" href="design.css" />
-<title>Your name</title>
+<title>Authentification n&eacute;cessaire</title>
 </head>
 <body>
 
@@ -14,12 +14,21 @@
    }
 
 %>
-<h3>Bonjour, quel est votre nom ?</h3>
-<form method="post" action="CheckLogin">Nom: <input type="text"
-	name="username" size="25">Mot de passe: <input type="password"
-	name="password" size="25">
-<p></p>
-<input type="submit" value="Valider"> <input type="reset"
-	value="Effacer"></form>
+<h3 id="index_titre">Identification</h3>
+<div id="login">
+	<form method="post" action="CheckLogin">
+		<table style="border: 0;">
+			<tr>
+				<td style="text-align: left;">Nom:</td><td style="text-align: left;"><input type="text" name="username"></td>
+			</tr>
+			<tr>
+				<td style="text-align: left; width: 100px;">Mot de passe:</td><td style="text-align: left;"><input type="password" name="password" style="width: 150px;"></td>
+			</tr>
+		</table>
+	<p></p>
+	<input type="submit" value="Valider"> <input type="reset"
+		value="Effacer">
+	</form>
+</div>
 </body>
 </html>

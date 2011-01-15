@@ -1,0 +1,90 @@
+h1
+{
+	color: #ffd700;
+	text-align: center;
+}
+
+h2
+{
+	color: #ff0000;
+}
+
+fieldset 
+{
+	background-color: #ff00ff;
+}
+
+table
+{
+   border-collapse: collapse;
+}
+
+body
+{
+	background-color: #FFFFCC;
+}
+
+#login
+{
+	text-align: center;
+}
+
+#index_titre
+{
+	text-align: center;
+}
+
+#login form table
+{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#accueil_menu, #delete_menu
+{
+	text-align: center;
+}
+
+#delete_menu thead tr, #delete_menu thead tr th, #delete_menu tbody tr, #delete_menu tbody tr td
+{
+	border: solid 1px black;
+	width: 15%;
+}
+
+#update_menu, #update_menu tr, #update_menu tr td, #found table, #found tr, #found tr td
+{
+	border: solid 1px black;
+}
+
+#addContact_menu tr td
+{
+	padding-bottom: 12px;
+}
+
+#accueil_menu div
+{
+	margin-bottom: 20px;
+}
+
+#accueil_menu div a:LINK
+{
+	text-decoration:none;
+	color: blue;
+}
+
+#accueil_menu div a:VISITED {
+	color: blue;
+	text-decoration: none;
+}
+
+#accueil_menu div a:HOVER
+{
+	text-decoration: none;
+	color: red;	
+}
+
+#error_desc
+{
+	text-align: center;
+	margin-bottom: 20px;
+}

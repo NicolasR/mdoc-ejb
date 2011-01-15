@@ -8,3 +8,4 @@
 		return false;
 	}
 %>
+<%@ page errorPage="error.jsp" %>

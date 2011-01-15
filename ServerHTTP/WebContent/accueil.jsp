@@ -12,14 +12,12 @@
 <h1>Bienvenue <%= (String)session.getAttribute("userName") %></h1>
 <br />
 <h2>Quelques liens :</h2>
-<a href="addContact.jsp">Ajouter un contact</a>
-<br />
-<a href="deleteContact.jsp">Supprimer un contact</a>
-<br />
-<a href="searchContact.jsp">Chercher un contact</a>
+<div id="accueil_menu">
+	<div><a href="addContact.jsp">Ajouter un contact</a></div>
+	<div><a href="deleteContact.jsp">Supprimer un contact</a></div>
+	<div><a href="searchContact.jsp">Chercher un contact</a></div>
+</div>
 <br />
 <a href="logout.jsp">Se déconnecter</a>
-<br />
-<a href="test">TEST</a>
 </body>
 </html>

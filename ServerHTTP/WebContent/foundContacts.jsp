@@ -1,3 +1,5 @@
+<%@page import="domain.PhoneNumber"%>
+<%@page import="domain.Address"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
 <%@page import="org.springframework.context.ApplicationContext"%>
 <%@page import="domain.Contact"%>
@@ -11,7 +13,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" media="screen" type="text/css" title="Design" href="design.css" />
 <title>Résultat de la recherche</title>
 </head>
 <body>
@@ -25,10 +28,26 @@ ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext
 DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
 List<Contact> list = new ArrayList<Contact>();
 String searchType = request.getParameter("searchType");
-if (searchType.equals("byfirstName") || searchType.equals("bylastName")) {
+if (request.getParameter("value").equals("*"))
+{
+	for(Contact contact : daoContact.getAll())
+	{
+		list.add(contact);
+	}
+}
+else if (searchType.equals("byfirstName")) {
 	String token = request.getParameter("value").toLowerCase();
-	for(Contact contact : daoContact.getAll()) {
-		if (contact.getFirstName().toLowerCase().contains(token))
+	for(Contact contact : daoContact.query("from Contact WHERE firstName LIKE '%"+token+"%'")) {
+		//if (contact.getFirstName().toLowerCase().contains(token))
+			list.add(contact);
+	}
+}
+else if (searchType.equals("bylastName"))
+{
+	String token = request.getParameter("value").toLowerCase();
+
+	for(Contact contact : daoContact.query("from Contact WHERE lastName LIKE '%"+token+"%'")) {
+		//if (contact.getLastName().toLowerCase().contains(token))
 			list.add(contact);
 	}
 }
@@ -42,33 +61,75 @@ else if (searchType.equals("bygroup")) {
 	}
 }
 if (list.size() == 0)
-	out.println("<h1>Aucun résultat!</h1>");
+	out.println("<h1 style='text-align: center;'>Aucun résultat!</h1>");
 else
 {
-	out.println(list.size()+" résultat(s)");
-	out.println("<table border='1'>");
-	out.println("<tr>");
-	out.print("<td>Nom</td>");
-	out.print("<td>Prénom</td>");
-	out.print("<td>Email</td>");
-	out.print("<td></td>");
-	out.println("</tr>");
+	%>
+	<div style="text-align: center;">
+		<h3><%out.print(list.size()+" résultat(s)");%></h3>
+	</div>
+	<div id="found" style="text-align: center;">
+	<table style="border: solid 1px black; margin: auto;">
+		<tr>
+			<td>Nom</td>
+			<td>Prénom</td>
+			<td>Email</td>
+			<td>Rue</td>
+			<td>Code postale</td>
+			<td>Ville</td>
+			<td>Pays</td>
+			<td>Groupes</td>
+			<td>Téléphones</td>
+			<td></td>
+		</tr>
+	<%
 	for(Contact contact : list) {
-		out.println("<tr>");
-		out.print("<td>"+contact.getLastName()+"</td>");
-		out.print("<td>"+contact.getFirstName()+"</td>");
-		out.print("<td>"+contact.getEmail()+"</td>");
-		out.print("<td>");
-		String urlargs = "updateContact.jsp?"+
-		"id=" + contact.getId() + //"&firstname="+
-		//contact.getFirstName() + "&lastname="+
-		//contact.getLastName() + 
-		"&email=" + contact.getEmail();
-		out.print("<a href='"+urlargs+"'>Modifier</a>");
-		out.println("</tr>");
+		Address address = contact.getAddress();
+		%>
+		<tr>
+			<td><%=contact.getLastName()%></td>
+			<td><%=contact.getFirstName()%></td>
+			<td><%=contact.getEmail()%></td>
+			<td><%=address.getStreet()%></td>
+			<td><%=address.getZip()%></td>
+			<td><%=address.getCity()%></td>
+			<td><%=address.getCountry()%></td>
+			<%
+			if (contact.getGroups().size()>0)
+			{
+				%><td><select><%for(ContactGroup group : contact.getGroups()) { %> <option><%=group.getGroupName()%></option> <% } %></select></td><%
+			}
+			else
+			{
+				%><td>Aucun</td><%
+			}
+			%>
+			<%
+			if (contact.getPhones().size()>0)
+			{
+				%><td><select><%for(PhoneNumber phone : contact.getPhones()) { %> <option><%=phone.getPhoneNumber()%></option> <% } %></select></td><%
+			}
+			else
+			{
+				%><td>Aucun</td><%
+			}
+			%>
+			<td><%
+				String urlargs = "updateContact.jsp?"+
+				"id=" + contact.getId() + //"&firstname="+
+				//contact.getFirstName() + "&lastname="+
+				//contact.getLastName() + 
+				"&email=" + contact.getEmail();%>
+				<a href='<%=urlargs%>'>Modifier</a>
+			</td>
+		</tr><%
 	}
-	out.println("</table>");
+	%>
+	</table>
+	</div>
+	<%
 }
 %>
+<%@ include file="bottom.jsp" %>
 </body>
 </html>

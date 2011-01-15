@@ -4,20 +4,35 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" media="screen" type="text/css" title="Design" href="design.css" />
 <title>Rechercher un contact</title>
 </head>
 <body>
 <%@ include file="checkLoginOK.jsp" %>
-<form method="post" action="SearchContact">
-	<select name="searchType">
-		<option value="byfirstName">Prénom</option>
-		<option value="bylastName">Nom</option>
-		<option value="byid">Id</option>
-	</select>
-	<input type="text" name="value" size="25">
-<br />
-<br />
-<input type="submit" value="Rechercher"> <input type="reset" value="Effacer">
-</form>
+<div style="text-align: center;">
+	<h1>Rechercher un contact</h1>
+</div>
+<div style="text-align: center;">
+
+	<table id="search_menu" style="margin: auto;">
+		<form method="post" action="SearchContact">
+			<tr>
+				<td>
+					<select name="searchType">
+						<option value="byfirstName">Prénom</option>
+						<option value="bylastName">Nom</option>
+						<option value="byid">Id</option>
+						<option value="bygroup">Groupe</option>
+					</select>
+				</td>
+				<td><input type="text" name="value" size="25"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="Rechercher"> <input type="reset" value="Effacer"></td>
+			</tr>
+		</form>
+	</table>
+</div>
+<%@ include file="bottom.jsp" %>
 </body>
 </html>
