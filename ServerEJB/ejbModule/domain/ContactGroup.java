@@ -8,8 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import common.interfaces.IContact;
+import common.interfaces.IContactGroup;
+
 @Entity
-public class ContactGroup {
+public class ContactGroup implements IContactGroup{
 	
 	@Id@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long groupId;
@@ -32,17 +35,20 @@ public class ContactGroup {
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
-	public Set<Contact> getContacts() {
-		if (contacts == null)
-		{
-			contacts = new HashSet<Contact>();
+	public Set<IContact> getContacts() {
+		Set<IContact> list = new HashSet<IContact>();
+		for (Contact contact : contacts) {
+			list.add((IContact)contact);
 		}
-		return contacts;
-	}
-	public void setContacts(Set<Contact> contacts) {
-		this.contacts = contacts;
+		return list;
 	}
 	
+	public void setContacts(Set<IContact> contacts) {
+		if (this.contacts == null)
+			this.contacts = new HashSet<Contact>();
+		for (IContact contact : contacts) {
+			this.contacts.add((Contact)contact);
+		}
+	}
 	
-
 }

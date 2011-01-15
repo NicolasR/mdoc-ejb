@@ -5,13 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import common.interfaces.IAddress;
+
 /**
  * @author Charles DUFOUR
  * @author Nicolas RIGNAULT
  * Adresse des contacts
  */
 @Entity
-public class Address {
+public class Address implements IAddress{
 	
 	/**
 	 * Identifiant de l'adresse
@@ -50,7 +52,7 @@ public class Address {
 	 * Renvoie l'id associé à l'adresse
 	 * @return identifiant de l'adresse
 	 */
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -125,5 +127,10 @@ public class Address {
 	 */
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	@Override
+	public void setId(long id) {
+		this.id = id;
 	}
 }

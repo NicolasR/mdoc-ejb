@@ -4,6 +4,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+
+import common.interfaces.IEntreprise;
 /**
  * @author Charles DUFOUR
  * @author Nicolas RIGNAULT
@@ -12,7 +14,7 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorValue("E")
-public class Entreprise extends Contact {
+public class Entreprise extends Contact implements IEntreprise{
 	
 	/**
 	 * Numéro SIRET
@@ -31,7 +33,7 @@ public class Entreprise extends Contact {
 	 * Renvoie le numéro SIRET
 	 * @return le numéro SIRET
 	 */
-	public Integer getNumSiret() {
+	public int getNumSiret() {
 		return NumSiret;
 	}
 
@@ -39,7 +41,7 @@ public class Entreprise extends Contact {
 	 * Définie le numéro SIRET
 	 * @param numSiret le nouveau numéro SIRET
 	 */
-	public void setNumSiret(Integer numSiret) {
+	public void setNumSiret(int numSiret) {
 		NumSiret = numSiret;
 	}
 

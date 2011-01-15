@@ -5,13 +5,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import common.interfaces.IContact;
+import common.interfaces.IPhoneNumber;
+
 /**
  * @author Charles DUFOUR
  * @author Nicolas RIGNAULT
  * Numéro de téléphone d'un contact
  */
 @Entity
-public class PhoneNumber {
+public class PhoneNumber implements IPhoneNumber{
 	
 	/**
 	 * Identifiant du numéro de téléphone
@@ -114,8 +117,8 @@ public class PhoneNumber {
 	 * Définie le contact associé au numéro de téléphone
 	 * @param contact le contact associé au numéro de téléphone
 	 */
-	public void setContact(Contact contact) {
-		this.contact = contact;
+	public void setContact(IContact contact) {
+		this.contact = (Contact)contact;
 	}
 
 }
