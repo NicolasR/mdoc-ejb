@@ -20,7 +20,6 @@ public class UserPwdServlet extends HttpServlet implements Servlet {
 	 */
 	public UserPwdServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -29,7 +28,6 @@ public class UserPwdServlet extends HttpServlet implements Servlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 	/**
