@@ -6,8 +6,8 @@ import javax.ejb.Remote;
 
 import common.interfaces.IAddress;
 import common.interfaces.IContact;
-import domain.ContactGroup;
-import domain.PhoneNumber;
+import common.interfaces.IContactGroup;
+import common.interfaces.IPhoneNumber;
 
 /**
  * @author Charles DUFOUR
@@ -16,7 +16,7 @@ import domain.PhoneNumber;
 @Remote
 public interface IDAOContact {
 	IContact getNewContact();
-	void create(String firstName, String lastName, String email, IAddress address, Set<PhoneNumber> phones, Set<ContactGroup> groups);
+	void create(String firstName, String lastName, String email, IAddress address, Set<IPhoneNumber> phones, Set<IContactGroup> groups);
 	void update(IContact contact);
 	void delete(long id);
 	IContact find(long id);

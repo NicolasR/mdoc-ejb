@@ -9,10 +9,10 @@ import javax.persistence.Query;
 
 import common.interfaces.IAddress;
 import common.interfaces.IContact;
+import common.interfaces.IContactGroup;
+import common.interfaces.IPhoneNumber;
 import domain.Address;
 import domain.Contact;
-import domain.ContactGroup;
-import domain.PhoneNumber;
 
 public class DAOContact implements IDAOContact {
 
@@ -21,7 +21,7 @@ public class DAOContact implements IDAOContact {
 
 	@Override
 	public void create(String firstName, String lastName, String email,
-			IAddress address, Set<PhoneNumber> phones, Set<ContactGroup> groups) {
+			IAddress address, Set<IPhoneNumber> phones, Set<IContactGroup> groups) {
 		Contact contact = new Contact();
 		contact.setFirstName(firstName);
 		contact.setLastName(lastName);
