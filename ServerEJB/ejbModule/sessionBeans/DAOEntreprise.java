@@ -9,12 +9,12 @@ import javax.persistence.Query;
 
 import common.interfaces.IAddress;
 import common.interfaces.IContact;
+import common.interfaces.IContactGroup;
 import common.interfaces.IEntreprise;
+import common.interfaces.IPhoneNumber;
 
 import domain.Contact;
-import domain.ContactGroup;
 import domain.Entreprise;
-import domain.PhoneNumber;
 
 public class DAOEntreprise implements IDAOEntreprise {
 
@@ -28,7 +28,7 @@ public class DAOEntreprise implements IDAOEntreprise {
 
 	@Override
 	public void create(String firstName, String lastName, String email,
-			IAddress address, Set<PhoneNumber> phones, Set<ContactGroup> groups) {
+			IAddress address, Set<IPhoneNumber> phones, Set<IContactGroup> groups) {
 		Contact contact = new Entreprise();
 		contact.setFirstName(firstName);
 		contact.setLastName(lastName);
@@ -72,8 +72,8 @@ public class DAOEntreprise implements IDAOEntreprise {
 
 	@Override
 	public void create(String firstName, String lastName, String email,
-			IAddress address, Set<PhoneNumber> phones,
-			Set<ContactGroup> groups, String numSiret) {
+			IAddress address, Set<IPhoneNumber> phones,
+			Set<IContactGroup> groups, String numSiret) {
 		// TODO Auto-generated method stub
 		Contact contact = new Entreprise();
 		contact.setFirstName(firstName);
