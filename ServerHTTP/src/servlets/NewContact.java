@@ -2,13 +2,23 @@ package servlets;
 
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import sessionBeans.IDAOAddress;
+import sessionBeans.IDAOContact;
+import sessionBeans.IDAOContactGroup;
+import sessionBeans.IDAOEntreprise;
+import sessionBeans.IDAOPhoneNumber;
+
+import common.interfaces.IAddress;
+import common.interfaces.IContactGroup;
+import common.interfaces.IPhoneNumber;
 
 /**
  * Servlet implementation class NewContact
@@ -92,7 +102,7 @@ public class NewContact extends HttpServlet {
 		 * Ajout des groupes associés au contact
 		 */
 		//DAO<ContactGroup> daoContactGroup = adf.getDAOContactGroup();
-		List<IContactGroup> groups = daoContactGroup.getAll();
+		Set<IContactGroup> groups = daoContactGroup.getAll();
 		HashSet<IContactGroup> set = new HashSet<IContactGroup>();
 		for (IContactGroup group : groups) {
 			String groupString = request.getParameter(group.getGroupName());
@@ -109,7 +119,7 @@ public class NewContact extends HttpServlet {
 		}
 		else
 		{
-			daoContact.create(firstName, lastName, email, address, listNumbers, set, numSiret);
+			daoEntreprise.create(firstName, lastName, email, address, listNumbers, set, numSiret);
 		}
 		request.getRequestDispatcher("accueil.jsp").forward(request, response);
 	}

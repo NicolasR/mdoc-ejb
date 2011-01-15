@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sessionBeans.IDAOContact;
+
+import common.interfaces.IContact;
+
 /**
  * Servlet implementation class deleteContact
  */

@@ -8,6 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sessionBeans.IDAOContact;
+import sessionBeans.IDAOPhoneNumber;
+
+import common.interfaces.IContact;
+import common.interfaces.IPhoneNumber;
+
 /**
  * Servlet implementation class UpdateContact
  */
@@ -70,7 +76,6 @@ public class UpdateContact extends HttpServlet {
 	      }
 	      
 	      daoContact.update(contact);
-		}
 	      request.getRequestDispatcher("accueil.jsp").forward(request, response);
 	}
 
