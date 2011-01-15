@@ -9,6 +9,7 @@ import common.interfaces.IPhoneNumber;
 
 @Remote
 public interface IDAOPhoneNumber {
+	IPhoneNumber getNewPhoneNumber();
 	void create(String phoneKind, String phoneNumber, IContact contact);
 	void update(IPhoneNumber phoneNumber);
 	void delete(long id);
