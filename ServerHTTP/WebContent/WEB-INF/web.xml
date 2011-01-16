@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+<web-app xmlns:javaee="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <listener>
-    <listener-class>
+    <javaee:listener-class>
 	org.springframework.web.context.ContextLoaderListener
-	</listener-class>
+	</javaee:listener-class>
   </listener>
   <listener>
-    <listener-class>
+    <javaee:listener-class>
 	org.springframework.web.context.request.RequestContextListener
-	</listener-class>
+	</javaee:listener-class>
   </listener>
-  <display-name>ServletAndJSP</display-name>
+  <javaee:display-name>ServletAndJSP</javaee:display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -20,83 +20,93 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-    <description>Première servlet</description>
-    <display-name>UserPwdServlet</display-name>
+    <javaee:description>Première servlet</javaee:description>
+    <javaee:display-name>UserPwdServlet</javaee:display-name>
     <servlet-name>UserPwdServlet</servlet-name>
-    <servlet-class>mdoc.tp1.UserPwdServlet</servlet-class>
+    <servlet-class>servlets.UserPwdServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UserPwdServlet</servlet-name>
     <url-pattern>/UserPwdServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>NewContact</display-name>
+    <javaee:description></javaee:description>
+    <javaee:display-name>NewContact</javaee:display-name>
     <servlet-name>NewContact</servlet-name>
-    <servlet-class>mdoc.tp1.NewContact</servlet-class>
+    <servlet-class>servlets.NewContact</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>NewContact</servlet-name>
     <url-pattern>/NewContact</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>DeleteContact</display-name>
+    <javaee:description></javaee:description>
+    <javaee:display-name>DeleteContact</javaee:display-name>
     <servlet-name>DeleteContact</servlet-name>
-    <servlet-class>mdoc.tp1.DeleteContact</servlet-class>
+    <servlet-class>servlets.DeleteContact</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteContact</servlet-name>
     <url-pattern>/DeleteContact</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>SearchContact</display-name>
+    <javaee:description></javaee:description>
+    <javaee:display-name>SearchContact</javaee:display-name>
     <servlet-name>SearchContact</servlet-name>
-    <servlet-class>mdoc.tp1.SearchContact</servlet-class>
+    <servlet-class>servlets.SearchContact</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SearchContact</servlet-name>
     <url-pattern>/SearchContact</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>UpdateContact</display-name>
+    <javaee:description></javaee:description>
+    <javaee:display-name>UpdateContact</javaee:display-name>
     <servlet-name>UpdateContact</servlet-name>
-    <servlet-class>mdoc.tp1.UpdateContact</servlet-class>
+    <servlet-class>servlets.UpdateContact</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateContact</servlet-name>
     <url-pattern>/UpdateContact</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>CreateGroup</display-name>
+    <javaee:description></javaee:description>
+    <javaee:display-name>CreateGroup</javaee:display-name>
     <servlet-name>CreateGroup</servlet-name>
-    <servlet-class>mdoc.tp1.CreateGroup</servlet-class>
+    <servlet-class>servlets.CreateGroup</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CreateGroup</servlet-name>
     <url-pattern>/CreateGroup</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>CheckLogin</display-name>
+    <javaee:description></javaee:description>
+    <javaee:display-name>CheckLogin</javaee:display-name>
     <servlet-name>CheckLogin</servlet-name>
-    <servlet-class>mdoc.tp1.CheckLogin</servlet-class>
+    <servlet-class>servlets.CheckLogin</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CheckLogin</servlet-name>
     <url-pattern>/CheckLogin</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>test</display-name>
-    <servlet-name>test</servlet-name>
-    <servlet-class>test</servlet-class>
+    <javaee:description></javaee:description>
+    <javaee:display-name>AddContactControler</javaee:display-name>
+    <servlet-name>AddContactControler</servlet-name>
+    <servlet-class>servlets.AddContactControler</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>test</servlet-name>
-    <url-pattern>/test</url-pattern>
+    <servlet-name>AddContactControler</servlet-name>
+    <url-pattern>/AddContactControler</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <javaee:description></javaee:description>
+    <javaee:display-name>DeleteContactControler</javaee:display-name>
+    <servlet-name>DeleteContactControler</servlet-name>
+    <servlet-class>servlets.DeleteContactControler</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteContactControler</servlet-name>
+    <url-pattern>/DeleteContactControler</url-pattern>
   </servlet-mapping>
 </web-app>

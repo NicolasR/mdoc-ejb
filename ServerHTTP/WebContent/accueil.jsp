@@ -13,8 +13,8 @@
 <br />
 <h2>Quelques liens :</h2>
 <div id="accueil_menu">
-	<div><a href="addContact.jsp">Ajouter un contact</a></div>
-	<div><a href="deleteContact.jsp">Supprimer un contact</a></div>
+	<div><a href="AddContactControler">Ajouter un contact</a></div>
+	<div><a href="DeleteContactControler">Supprimer un contact</a></div>
 	<div><a href="searchContact.jsp">Chercher un contact</a></div>
 </div>
 <br />

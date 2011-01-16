@@ -1,11 +1,8 @@
-<%@page import="domain.PhoneNumber"%>
-<%@page import="domain.Address"%>
-<%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
-<%@page import="org.springframework.context.ApplicationContext"%>
-<%@page import="domain.Contact"%>
-<%@page import="domain.ContactGroup"%>
-<%@page import="dao.DAO"%>
-<%@page import="dao.AbstractDAOFactory"%>
+<%@page import="common.interfaces.IPhoneNumber"%>
+<%@page import="common.interfaces.IAddress"%>
+<%@page import="common.interfaces.IContactGroup"%>
+<%@page import="java.util.Set"%>
+<%@page import="common.interfaces.IContact"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -19,42 +16,31 @@
 </head>
 <body>
 <%@ include file="checkLoginOK.jsp" %>
-<% 
-//AbstractDAOFactory adf = AbstractDAOFactory
-//.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
-
-//DAO<Contact> daoContact = adf.getDAOContact();
-ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
-List<Contact> list = new ArrayList<Contact>();
+<%
+List<IContact> list = new ArrayList<IContact>();
 String searchType = request.getParameter("searchType");
 if (request.getParameter("value").equals("*"))
 {
-	for(Contact contact : daoContact.getAll())
+	for(IContact contact : (Set<IContact>)request.getAttribute("contacts"))
 	{
 		list.add(contact);
 	}
 }
 else if (searchType.equals("byfirstName")) {
-	String token = request.getParameter("value").toLowerCase();
-	for(Contact contact : daoContact.query("from Contact WHERE firstName LIKE '%"+token+"%'")) {
-		//if (contact.getFirstName().toLowerCase().contains(token))
+	for(IContact contact : (Set<IContact>)request.getAttribute("query1") ) {
 			list.add(contact);
 	}
 }
 else if (searchType.equals("bylastName"))
 {
-	String token = request.getParameter("value").toLowerCase();
-
-	for(Contact contact : daoContact.query("from Contact WHERE lastName LIKE '%"+token+"%'")) {
-		//if (contact.getLastName().toLowerCase().contains(token))
+	for(IContact contact : (Set<IContact>)request.getAttribute("query2") ) {
 			list.add(contact);
 	}
 }
 else if (searchType.equals("bygroup")) {
 	String token = request.getParameter("value").toLowerCase();
-	for(Contact contact : daoContact.getAll()) {
-		for (ContactGroup group : contact.getGroups()) {
+	for(IContact contact : (Set<IContact>)request.getAttribute("contacts") ) {
+		for (IContactGroup group : contact.getGroups()) {
 			if (group.getGroupName().toLowerCase().contains(token))
 				list.add(contact);
 		}
@@ -83,8 +69,8 @@ else
 			<td></td>
 		</tr>
 	<%
-	for(Contact contact : list) {
-		Address address = contact.getAddress();
+	for(IContact contact : list) {
+		IAddress address = contact.getAddress();
 		%>
 		<tr>
 			<td><%=contact.getLastName()%></td>
@@ -97,7 +83,7 @@ else
 			<%
 			if (contact.getGroups().size()>0)
 			{
-				%><td><select><%for(ContactGroup group : contact.getGroups()) { %> <option><%=group.getGroupName()%></option> <% } %></select></td><%
+				%><td><select><%for(IContactGroup group : contact.getGroups()) { %> <option><%=group.getGroupName()%></option> <% } %></select></td><%
 			}
 			else
 			{
@@ -107,7 +93,7 @@ else
 			<%
 			if (contact.getPhones().size()>0)
 			{
-				%><td><select><%for(PhoneNumber phone : contact.getPhones()) { %> <option><%=phone.getPhoneNumber()%></option> <% } %></select></td><%
+				%><td><select><%for(IPhoneNumber phone : contact.getPhones()) { %> <option><%=phone.getPhoneNumber()%></option> <% } %></select></td><%
 			}
 			else
 			{

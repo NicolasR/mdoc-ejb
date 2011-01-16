@@ -1,11 +1,7 @@
-
-<%@page import="domain.PhoneNumber"%>
-<%@page import="domain.ContactGroup"%>
-<%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
-<%@page import="org.springframework.context.ApplicationContext"%>
-<%@page import="domain.Contact"%>
-<%@page import="dao.DAO"%>
-<%@page import="dao.AbstractDAOFactory"%>
+<%@page import="common.interfaces.IPhoneNumber"%>
+<%@page import="common.interfaces.IContactGroup"%>
+<%@page import="java.util.Set"%>
+<%@page import="common.interfaces.IContact"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,14 +14,7 @@
 <body>
 <%@ include file="checkLoginOK.jsp" %>
 	<form method="post" action="DeleteContact">
-		<%
-		//AbstractDAOFactory adf = AbstractDAOFactory
-		//	.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
 		
-		//DAO<Contact> daoContact = adf.getDAOContact();
-		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-		DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
-		%>
 	<div style="text-align: center;">
 		<h1>Liste des contacts</h1>
 	</div>
@@ -44,7 +33,7 @@
 		</thead>
 		<tbody>
 		<%
-		for(Contact c : daoContact.getAll())
+		for(IContact c : (Set<IContact>)request.getAttribute("contacts"))
 		{
 			%>
 			<tr>
@@ -57,7 +46,7 @@
 			<%
 			if (c.getGroups().size()>0)
 			{
-				%><td><select><%for(ContactGroup group : c.getGroups()) { %> <option><%=group.getGroupName()%></option> <% } %></select></td><%
+				%><td><select><%for(IContactGroup group : c.getGroups()) { %> <option><%=group.getGroupName()%></option> <% } %></select></td><%
 			}
 			else
 			{
@@ -67,7 +56,7 @@
 			<%
 			if (c.getPhones().size()>0)
 			{
-				%><td><select><%for(PhoneNumber phone : c.getPhones()) { %> <option><%=phone.getPhoneNumber()%></option> <% } %></select></td><%
+				%><td><select><%for(IPhoneNumber phone : c.getPhones()) { %> <option><%=phone.getPhoneNumber()%></option> <% } %></select></td><%
 			}
 			else
 			{

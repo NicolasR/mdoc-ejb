@@ -1,8 +1,5 @@
-<%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
-<%@page import="domain.ContactGroup"%>
-<%@page import="dao.DAO"%>
-<%@page import="dao.AbstractDAOFactory"%>
-<%@page import="org.springframework.context.ApplicationContext" %>
+<%@page import="common.interfaces.IContactGroup"%>
+<%@page import="java.util.Set"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -50,18 +47,13 @@
 			<tr><td>Entreprise:</td><td><input type="checkbox" id="isEntreprise" name="isEntreprise" onclick="showhidefield()" size="25"></td></tr>
 			<tr><td id="siret" style="display:none;">Numéro SIRET:</td><td id="siretsecond" style="display:none;"><input type="text" name="numSiret"></td></tr>
 			<%
-			//AbstractDAOFactory adf = AbstractDAOFactory
-			//	.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
-			//DAO<ContactGroup> daoContactGroup = adf.getDAOContactGroup();
-			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-			DAO<ContactGroup> daoContactGroup = (DAO<ContactGroup>)context.getBean("DAOContactGroup");
-			if (daoContactGroup.getAll().size() > 0)
+			if ( ((Set<IContactGroup>)request.getAttribute("groups")).size() > 0)
 			{
 				
 			%>
 			<tr><td colspan="2" style="padding-top: 20px; padding-bottom: 15px; font-weight: bold;">Choisissez les groupes :</td></tr>
 				<%
-				for(ContactGroup group : daoContactGroup.getAll())
+				for(IContactGroup group : (Set<IContactGroup>)request.getAttribute("groups"))
 				{
 					%>
 					<tr>
