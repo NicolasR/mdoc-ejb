@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import common.interfaces.IAddress;
+import common.interfaces.IContact;
 import domain.Address;
 
 @Stateless(mappedName="DAOAddress")
@@ -59,6 +60,16 @@ public class DAOAddress implements IDAOAddress {
 	public IAddress getNewAddress() {
 		// TODO Auto-generated method stub
 		return (IAddress)new Address();
+	}
+
+	@Override
+	public Set<IAddress> query(String token) {
+		Query query = em.createQuery(token);
+		Set<IAddress> listAddress = new HashSet<IAddress>();
+		for (Object address : query.getResultList()) {
+			listAddress.add((IAddress)address);
+		}
+		return listAddress;
 	}
 
 }

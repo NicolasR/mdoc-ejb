@@ -57,4 +57,14 @@ public class DAOPhoneNumber implements IDAOPhoneNumber {
 		return (IPhoneNumber)new PhoneNumber();
 	}
 
+	@Override
+	public Set<IPhoneNumber> query(String token) {
+		Query query = em.createQuery(token);
+		Set<IPhoneNumber> listPhoneNumber = new HashSet<IPhoneNumber>();
+		for (Object phoneNumber : query.getResultList()) {
+			listPhoneNumber.add((IPhoneNumber)phoneNumber);
+		}
+		return listPhoneNumber;
+	}
+
 }

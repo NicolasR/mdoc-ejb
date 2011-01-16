@@ -85,4 +85,14 @@ public class DAOEntreprise implements IDAOEntreprise {
 		em.persist(contact);
 	}
 
+	@Override
+	public Set<IContact> query(String token) {
+		Query query = em.createQuery(token);
+		Set<IContact> listEntreprise = new HashSet<IContact>();
+		for (Object entreprise : query.getResultList()) {
+			listEntreprise.add((IContact)entreprise);
+		}
+		return listEntreprise;
+	}
+
 }

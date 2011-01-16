@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.ejb.Remote;
 
+import common.interfaces.IContact;
 import common.interfaces.IContactGroup;
 
 @Remote
@@ -14,4 +15,5 @@ public interface IDAOContactGroup {
 	void delete(long id);
 	IContactGroup find(long id);
 	Set<IContactGroup> getAll();
+	Set<IContactGroup> query(String token);
 }
