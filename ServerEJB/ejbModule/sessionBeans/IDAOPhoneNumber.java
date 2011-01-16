@@ -15,4 +15,5 @@ public interface IDAOPhoneNumber {
 	void delete(long id);
 	IPhoneNumber find(long id);
 	Set<IPhoneNumber> getAll();
+	Set<IPhoneNumber> query(String token);
 }

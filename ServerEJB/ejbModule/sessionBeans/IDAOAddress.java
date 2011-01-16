@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.ejb.Remote;
 
 import common.interfaces.IAddress;
+import common.interfaces.IContact;
 
 @Remote
 public interface IDAOAddress {
@@ -14,4 +15,5 @@ public interface IDAOAddress {
 	void delete(long id);
 	IAddress find(long id);
 	Set<IAddress> getAll();
+	Set<IAddress> query(String token);
 }

@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import common.interfaces.IContact;
 import common.interfaces.IContactGroup;
 import domain.ContactGroup;
 
@@ -51,6 +52,16 @@ public class DAOContactGroup implements IDAOContactGroup {
 	@Override
 	public IContactGroup getNewContactGroup() {
 		return (IContactGroup)new ContactGroup();
+	}
+
+	@Override
+	public Set<IContactGroup> query(String token) {
+		Query query = em.createQuery(token);
+		Set<IContactGroup> listContactGroup = new HashSet<IContactGroup>();
+		for (Object contactGroup : query.getResultList()) {
+			listContactGroup.add((IContactGroup)contactGroup);
+		}
+		return listContactGroup;
 	}
 
 	

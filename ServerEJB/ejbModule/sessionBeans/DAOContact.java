@@ -63,5 +63,13 @@ public class DAOContact implements IDAOContact {
 		return (IContact)new Contact();
 	}
 	
+	public Set<IContact> query(String token) {
+		Query query = em.createQuery(token);
+		Set<IContact> listContact = new HashSet<IContact>();
+		for (Object contact : query.getResultList()) {
+			listContact.add((IContact)contact);
+		}
+		return listContact;
+	}
 	
 }
