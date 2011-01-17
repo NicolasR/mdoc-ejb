@@ -11,4 +11,5 @@ public interface IDAOContactGroup {
 	void delete(long id);
 	IContactGroup find(long id);
 	Set<IContactGroup> getAll();
+	Set<IContactGroup> query(String token);
 }

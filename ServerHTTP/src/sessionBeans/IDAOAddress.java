@@ -11,4 +11,5 @@ public interface IDAOAddress {
 	void delete(long id);
 	IAddress find(long id);
 	Set<IAddress> getAll();
+	Set<IAddress> query(String token);
 }

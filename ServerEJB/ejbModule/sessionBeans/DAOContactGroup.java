@@ -3,6 +3,7 @@ package sessionBeans;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -11,6 +12,7 @@ import common.interfaces.IContact;
 import common.interfaces.IContactGroup;
 import domain.ContactGroup;
 
+@Stateless(mappedName="DAOContactGroup")
 public class DAOContactGroup implements IDAOContactGroup {
 
 	@PersistenceContext

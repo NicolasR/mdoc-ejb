@@ -18,4 +18,5 @@ public interface IDAOContact {
 	void delete(long id);
 	IContact find(long id);
 	Set<IContact> getAll();
+	Set<IContact> query(String token);
 }

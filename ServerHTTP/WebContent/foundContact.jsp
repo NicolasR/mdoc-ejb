@@ -20,11 +20,8 @@
 		%>Nom:<%=contact.getLastName()%><br>
 		Prenom:<%=contact.getFirstName()%><br>
 		email:<%=contact.getEmail()%><br>
-		<% String urlargs = "updateContact.jsp?"+
-			"id=" + contact.getId() + //"&firstname="+
-			//contact.getFirstName() + "&lastname="+
-			//contact.getLastName() +
-			"&email=" + contact.getEmail();%>
+		<% String urlargs = "UpdateContactControler?"+
+			"id=" + contact.getId();%>
 		<a href='<%=urlargs%>'>Modifier</a>
 		<%
 	}%>

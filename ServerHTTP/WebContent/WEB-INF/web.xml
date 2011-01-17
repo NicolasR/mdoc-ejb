@@ -109,4 +109,14 @@
     <servlet-name>DeleteContactControler</servlet-name>
     <url-pattern>/DeleteContactControler</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <javaee:description></javaee:description>
+    <javaee:display-name>UpdateContactControler</javaee:display-name>
+    <servlet-name>UpdateContactControler</servlet-name>
+    <servlet-class>servlets.UpdateContactControler</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateContactControler</servlet-name>
+    <url-pattern>/UpdateContactControler</url-pattern>
+  </servlet-mapping>
 </web-app>

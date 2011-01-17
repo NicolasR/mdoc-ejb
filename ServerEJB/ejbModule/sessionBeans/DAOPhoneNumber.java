@@ -3,6 +3,7 @@ package sessionBeans;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -12,6 +13,7 @@ import common.interfaces.IPhoneNumber;
 import domain.Contact;
 import domain.PhoneNumber;
 
+@Stateless(mappedName="DAOPhoneNumber")
 public class DAOPhoneNumber implements IDAOPhoneNumber {
 
 	@PersistenceContext
