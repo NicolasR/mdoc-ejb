@@ -5,7 +5,6 @@ import java.util.Set;
 import javax.ejb.Remote;
 
 import common.interfaces.IAddress;
-import common.interfaces.IContact;
 
 @Remote
 public interface IDAOAddress {

@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import common.interfaces.IAddress;
-import common.interfaces.IContact;
+
 import domain.Address;
 
 @Stateless(mappedName="DAOAddress")

@@ -4,7 +4,6 @@ import java.util.Set;
 
 import javax.ejb.Remote;
 
-import common.interfaces.IContact;
 import common.interfaces.IContactGroup;
 
 @Remote
